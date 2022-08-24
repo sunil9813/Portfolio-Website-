@@ -1,0 +1,38 @@
+header {
+  @include shadow;
+  display: flex;
+  @include flex(space-between, none, center);
+  background-color: $black;
+
+  ul {
+    width: $w-4xl;
+    display: flex;
+    align-items: center;
+    padding: 30px;
+    li {
+      margin-right: $s;
+      position: relative;
+      a {
+        text-transform: capitalize;
+        font-size: 15px;
+        font-weight: 500;
+        @include zindex;
+      }
+      span {
+        color: $indigo;
+        @include absolute;
+        font-size: 50px;
+        top: -20px;
+        opacity: 0.3;
+      }
+    }
+  }
+  .icons {
+    width: $s;
+    background: $lightdark;
+    @include flex(center, none, none);
+    button {
+      font-size: 50px;
+    }
+  }
+}

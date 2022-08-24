@@ -1,0 +1,246 @@
+$blue: #34313f;
+$lightblue: #292633;
+$primary: #01d85f;
+$indigo: #7635f5;
+$gray: #808080;
+$graydark: #34313f;
+$black: #201e29;
+$lightdark: #292633;
+$white: #fff;
+$lightgray: #808080;
+
+// padding
+$p-sm: 15px;
+$p-md: 20px;
+$p-lg: 30px;
+$p-xl: 40px;
+$p-2xl: 50px;
+
+// padding
+$sm: 10px;
+$m-sm: 15px;
+$m-md: 20px;
+$m-lg: 30px;
+$m-xl: 40px;
+$m-2xl: 50px;
+
+// width
+$s: 10%;
+$w-s: 20%;
+$w-sm: 25%;
+$w-md: 50px;
+$w-lg: 50%;
+$w-xl: 60%;
+$w-2xl: 72%;
+$w-3xl: 80%;
+$w-4xl: 90%;
+$w-full: 100%;
+
+// height
+$h-sm: 20px;
+$h-md: 25px;
+$h-lg: 30px;
+$h-xl: 40px;
+$h-2xl: 50px;
+$h-3xl: 10vh;
+$h-4xl: 20vh;
+$h-full: 100vh;
+
+$gray-dark: #343a40;
+
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+@function set-text-color($color) {
+  @if (lightness($color) > 40%) {
+    @return #fff;
+  } @else {
+    @return #000;
+  }
+}
+@mixin defaultValue {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  color: $white;
+  list-style-type: none;
+  background: none;
+}
+@mixin trsansition {
+  transition: all 0.5s ease-in-out;
+}
+@mixin zindex {
+  position: relative;
+  z-index: 99;
+}
+@mixin flex($justify, $center, $center1) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $center;
+  text-align: $center1;
+}
+
+@mixin shadow {
+  box-shadow: -3px 2px 21px 4px rgb(32 30 41);
+}
+@mixin absolute {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+$sizes: (
+  "sm": 50px,
+  "md": 60px,
+  "lg": 70px,
+  "2xl": 160px,
+);
+
+/*@function icon($size, $line-height) {
+  @return map-get($sizes, $size);
+  @return map-get($sizes, $line-height);
+}
+
+@mixin icon {
+  width: map-get($sizes, sm);
+  height: map-get($sizes, sm);
+  background: $indigo;
+  color: $white;
+  border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+  font-size: 18px;
+  line-height: map-get($sizes, sm);
+  padding: 5px;
+  text-align: center;
+  transition: all ease 300ms;
+
+  &:hover {
+    background: $primary;
+    cursor: pointer;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  }
+}
+*/
+
+@mixin icons($width, $height, $background, $size, $line, $backgroundHover) {
+  width: $width;
+  height: $height;
+  background: $background;
+  color: white;
+  border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+  font-size: $size;
+  line-height: $line;
+  padding: 5px;
+  text-align: center;
+  transition: all ease 300ms;
+
+  &:hover {
+    background: $backgroundHover;
+    cursor: pointer;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  }
+}
+
+@mixin hoverButton($backgroundHover) {
+  background: $backgroundHover;
+}
+
+@mixin button($background, $width, $height, $line-height, $backgroundHover) {
+  position: relative;
+  width: $width;
+  height: $height;
+  background: $background;
+  line-height: $line-height;
+  padding: 0 35px;
+  color: $white;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 2px;
+  @include flex(center, center, center);
+  @include trsansition;
+
+  span {
+    margin-left: 10px;
+    @include zindex;
+  }
+  &_bicon {
+    font-size: 22px;
+    @include zindex;
+  }
+
+  &::after {
+    content: "";
+    width: 0;
+    height: 100%;
+    @include absolute;
+    left: auto;
+    right: 0;
+    @include hoverButton($backgroundHover);
+    transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) 0s;
+    border-radius: 2px;
+  }
+
+  &:hover:after {
+    width: 100%;
+    left: 0;
+    right: auto;
+    color: $white;
+    border-radius: 2px;
+  }
+}
+
+@mixin grids($row, $num, $gap) {
+  display: grid;
+  grid-template-columns: repeat($row, $num);
+  grid-gap: $gap;
+}
+
+@mixin cards($padding, $background, $hover: true) {
+  padding: $padding;
+  background: $background;
+  border-bottom: 5px solid transparent;
+  @include trsansition;
+  cursor: pointer;
+  p {
+    font-size: 15px;
+    line-height: 2;
+    margin: 10px 0;
+    color: $gray;
+  }
+  h3 {
+    margin: 5px 0;
+    font-weight: 500;
+    font-size: 17px;
+  }
+  label {
+    color: $primary;
+  }
+
+  @if $hover {
+    &:hover {
+      border-radius: 2px 2px 10px 10px;
+      border-bottom-color: $indigo;
+      box-shadow: -3px 2px 21px 4px rgba(32, 30, 41, 1);
+    }
+  }
+}
+
+@mixin media-md {
+  @media screen and (max-width: $breakpoint-md) {
+    @content;
+  }
+}
+@mixin media-sm {
+  @media screen and (max-width: $breakpoint-sm) {
+    @content;
+  }
+}

@@ -1,0 +1,115 @@
+@import "config";
+@import "header";
+@import "side";
+@import "home";
+@import "responsive";
+
+body {
+  background: url("../images/bg.png") no-repeat fixed top center $blue;
+  color: set-text-color($white);
+  font-family: $font-family-sans-serif;
+}
+a {
+  @include defaultValue;
+  @include trsansition;
+
+  &:hover {
+    color: $primary;
+  }
+}
+ul,
+button {
+  @include defaultValue;
+}
+
+.main-div {
+  width: $w-4xl;
+  margin: auto;
+  @include flex(space-between, none, none);
+  padding: $p-xl;
+}
+.side {
+  width: $w-sm;
+  background-color: $lightblue;
+  @include shadow;
+  height: 105vh;
+}
+main {
+  width: $w-2xl;
+}
+
+$colors: (
+  facebook: #1773ea,
+  twitter: #009deb,
+  dribbble: #ea4c89,
+  instagram: #d62977,
+);
+
+@each $name, $color in $colors {
+  .#{$name} {
+    @include icons(50px, 50px, #ff43cb, 18px, 50px, $primary);
+    background: $color;
+    margin: 5px;
+  }
+}
+
+$backgrouds: (
+  skill1: linear-gradient(to right, #ff43cb, #ff56a1, #ff7882, #ff9a74, #feb779),
+  skill2: linear-gradient(to right, #806dfa, #009eff, #00c1ff, #00dcf8, #6ef2e1),
+  skill3: linear-gradient(to right, #8865dd, #9c63dc, #ae62d9, #bf60d6, #cf5ed2),
+);
+
+@each $skill, $backgroud in $backgrouds {
+  .#{$skill} {
+    background: $backgroud;
+  }
+}
+
+.button {
+  @include button($indigo, map-get($sizes, 2xl), map-get($sizes, sm), map-get($sizes, sm), $primary);
+}
+.sm_button {
+  @include button($primary, map-get($sizes, sm), map-get($sizes, sm), map-get($sizes, sm), $indigo);
+  span {
+    margin: 0;
+  }
+}
+
+.container {
+  @include shadow;
+  padding: 30px;
+  background: $black;
+  margin-top: 30px;
+}
+
+.heading {
+  font-weight: 700;
+  font-size: 15px;
+  color: $primary;
+  line-height: 0.8;
+  margin: 0 0 35px;
+  position: relative;
+  padding: 0 0 13px;
+  text-transform: capitalize;
+
+  &::after {
+    content: "";
+    @include absolute;
+    width: 50px;
+    height: 7px;
+    top: 30px;
+    background-image: url("../images/heading.png");
+    background-size: contain;
+  }
+}
+
+.icon {
+  @include icons(60px, 60px, $indigo, 22px, 60px, $primary);
+}
+
+.pages {
+  @extend .container;
+  height: 90vh;
+  font-size: 50px;
+  color: $primary;
+}

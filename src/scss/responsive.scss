@@ -1,0 +1,57 @@
+@include media-md {
+  header {
+    .menu {
+      display: none;
+    }
+    .mobile-nav {
+      display: block;
+      width: 100%;
+      background-color: $indigo;
+      @include absolute;
+      height: 100vh;
+      z-index: 999;
+      span {
+        display: none;
+      }
+      li {
+        margin: 30px;
+        a {
+          font-size: 50px;
+        }
+      }
+    }
+    .icons {
+      @include absolute;
+      z-index: 10000;
+      top: 60px;
+      width: 100%;
+      left: 35%;
+      background: none;
+    }
+  }
+  .main-div {
+    flex-direction: column;
+
+    .side {
+      position: relative;
+      width: $w-full;
+      height: auto;
+    }
+
+    main {
+      width: 100%;
+    }
+  }
+  .about {
+    &_services {
+      &_boxs {
+        @include grids(2, 1fr, 40px);
+      }
+    }
+    &_price {
+      &_content {
+        @include grids(2, 1fr, 40px);
+      }
+    }
+  }
+}

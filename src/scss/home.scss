@@ -1,0 +1,121 @@
+.about {
+  &_details {
+    &_content {
+      @include grids(2, 1fr, 40px);
+      margin-bottom: 50px;
+      &_box {
+        @include flex(none, center, none);
+        &_text {
+          margin-left: 20px;
+          h4 {
+            font-weight: 500;
+          }
+          span {
+            color: $lightgray;
+          }
+        }
+      }
+    }
+
+    &_bio {
+      margin: 50px 0;
+      &_box {
+        @include grids(2, 1fr, 30px);
+
+        p {
+          color: $lightgray;
+          font-size: 14px;
+          line-height: 2;
+        }
+      }
+    }
+  }
+
+  &_services {
+    &_boxs {
+      @include grids(3, 3fr, 30px);
+      .card {
+        @include cards(20px, $lightblue, $hover: true);
+      }
+      .icon {
+        @include icons(70px, 70px, $black, 25px, 70px, $indigo);
+        color: $indigo;
+        &:hover {
+          color: $white;
+        }
+      }
+    }
+  }
+
+  &_sider {
+    position: relative;
+    margin: 50px 0;
+    width: 100%;
+    &_content {
+      .card {
+        @include cards(30px 0, none, $hover: false);
+        @include flex(space-between, none, none);
+        position: relative;
+
+        img {
+          border-radius: 50%;
+          margin-right: 30px;
+        }
+        &::after {
+          content: "❝";
+          position: absolute;
+          @include flex(center, center, center);
+          font-size: 40px;
+          bottom: 20px;
+          width: 60px;
+          height: 60px;
+          background: url("/images/back.png");
+          background-size: contain;
+        }
+        p {
+          font-style: italic;
+        }
+      }
+
+      &_slideButton {
+        width: 100%;
+        @include absolute;
+        left: 0;
+        button {
+          float: right;
+          @include icons(40px, 40px, $primary, 22px, 40px, $indigo);
+          border-radius: 0;
+          margin: 5px;
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+
+  &_price {
+    &_content {
+      @include grids(3, 1fr, 40px);
+    }
+    .cards {
+      @include cards(30px, $lightblue, $hover: false);
+      text-align: center;
+
+      i {
+        font-size: 80px;
+        color: $indigo;
+      }
+      h1 {
+        font-size: 40px;
+      }
+      button {
+        @include button(none, map-get($sizes, 2xl), map-get($sizes, sm), map-get($sizes, sm), none);
+        color: $primary;
+        text-decoration: underline;
+        letter-spacing: 1px;
+        .icons {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}
